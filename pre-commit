@@ -1,0 +1,10 @@
+#!/bin/sh –e
+case "${1}” in
+    --about )
+        echo "check *.js files using jslint";;
+    * )
+    for FILE in $(git diff --cached --diff-filter=ACMTR --name-only HEAD | grep -e '\.js$'); do
+        echo jslint $FILE
+        jslint $FILE
+    done;;
+esac
